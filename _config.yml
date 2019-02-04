@@ -116,11 +116,11 @@ author:
       icon: "fas fa-fw fa-envelope-square"
       url: mailto:tomasz.szabluk@gmail.com
     - label: "LinkedIn"
-      icon: "fas fa-fw fa-linkedin-square"
+      icon: "fab fa-fw fa-linkedin-square"
       url: "https://www.linkedin.com/in/tomaszszabluk/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
+      url: "https://twitter.com/"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
