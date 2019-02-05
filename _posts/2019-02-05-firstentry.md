@@ -1,6 +1,7 @@
 ---
 title: "First Entry"
 date: 2019-02-05
+category: Dev
 tags: [qunat finance, math, programming]
 excerpt: "First Entry"
 mathjax: "true"
