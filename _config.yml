@@ -109,7 +109,7 @@ author:
   name             : "Tomasz"
   avatar           : "/images/bio_image.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Quantitative Analyst and Developer"
-  location         : "Warasw, Poland"
+  location         : "Warsaw, Poland"
   email            : 
   links:
     - label: "Email"
