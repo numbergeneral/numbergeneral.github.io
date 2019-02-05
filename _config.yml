@@ -16,9 +16,9 @@ minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Tomasz Szabluk"
+title                    : "Tomasz"
 title_separator          : "-"
-name                     : "Tomasz Szabluk"
+name                     : "Tomasz"
 description              : "Quantitative Finance Portfolio"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -100,13 +100,13 @@ social:
 analytics:
   provider               : "google" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          :
+    tracking_id          : "UA-133888147-1"
     anonymize_ip         : # true, false (default)
 
 
 # Site Author
 author:
-  name             : "Tomasz Szabluk"
+  name             : "Tomasz"
   avatar           : "/images/bio_image.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Quantitative Analyst and Developer"
   location         : "Warasw, Poland"
