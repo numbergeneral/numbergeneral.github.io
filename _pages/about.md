@@ -14,7 +14,7 @@ At the fourth year of Finance Studies I have started my career in Risk as the Ma
 During my career I have participated twice in the [Global Management Challenge](http://globalmanagementchallenge.pt/worldgmc/). Together with a team we first won the [National Vice-Championship](http://gmcpoland.pl/15-edycja-konkursu-gmc-poland-2014/), a year after [National Championship](https://gmcpoland.pl/en/15-edition-of-global-management-challenge-poland/) and represented Poland in World Championships in Macau, China.
 
 ![GMC Team in Macau](/images/macau.jpg)
-GMC team during the World Final in Macau. From the left [Sebastian Maciejewski, PhD, CQF](https://www.linkedin.com/in/sebastian-maciejewski-828b19/), Paweł Stawski, a nice lady from our fauvorite restaurant, [Sławomir Sztrajt, MBA](https://www.linkedin.com/in/slawomir-sztrajt/) and me. 
+GMC team during the World Final in Macau. From the left [Sebastian Maciejewski PhD CQF](https://www.linkedin.com/in/sebastian-maciejewski-828b19/), Paweł Stawski, a nice lady from our fauvorite restaurant, [Sławomir Sztrajt MBA](https://www.linkedin.com/in/slawomir-sztrajt/) and me. 
 
 In the meantime, I have [won the free admission to MBA studies on Kozminski University](https://gmcpoland.pl/en/play-in-gmc-win-mba-happened-on-15th-january/) as a reward for winning a math contest organized by the university.
   
