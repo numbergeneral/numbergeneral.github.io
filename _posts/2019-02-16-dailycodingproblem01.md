@@ -26,18 +26,20 @@ def number_can_be_created_from_two_list_values(input_list, number):
     
     for i in range(0, len(input_list)):
         subtraction_list.append(number - input_list[i]) 
-        if input_list[i] in subtraction_list:
-            print("Two numbers from the list add up to a given number.")  
+        if input_list[i] in subtraction_list: 
             return True
-
-    print("Any two numbers from the list don't add up to a given number.")
+    
     return False
 
 def test_solution(number, test_dictionary):
     print("The tested number is: ", number)
     for key, value in test_dictionary.items():
         print("Test name:", key, "\nThe numbers are:", value)
-        number_can_be_created_from_two_list_values(value, number)
+        if(number_can_be_created_from_two_list_values(value, number)):
+            print("Two numbers from the list add up to a given number.") 
+        else:
+            print("Any two numbers from the list don't ",
+                  "add up to a given number.")
 
 if __name__ == "__main__":
     number = 17
@@ -48,11 +50,12 @@ if __name__ == "__main__":
     test_solution(number, test_dictionary)
 ```
 
-The solution in C++ is very similar. The only difference is that there is no ready function to check if the element is within the vector. Thus, I have implemented another loop that loops values in the subtraction vector and checks if the current iteration element is equal to one of them.
+The solution in C++ is very similar. The only difference is that there is no ready function to check if the element is within the vector. Thus, instead of using std::vector I have used std::set. Set keeps only unique elements and has a function that allows us to look for desired value. The complexity of std::set::find is logarithmic in size. 
 {: .text-justify}
 
 ```cpp
 #include <vector>
+#include <set>
 #include <iostream>
 
 using namespace std;
@@ -84,34 +87,32 @@ int main()
     // Print out the result
     if (number_adds_up_in_the_list)
     {
-        cout << "\nThe number can be created from the two numbers in the list\n";
+        cout << "The number can be created from "
+        "the two numbers in the list\n";
     }
     else
     {
-        cout << "\nThe number cannot be created from any two numbers in the list\n";
+        cout << "The number cannot be created from " 
+        "any two numbers in the list\n";
     }
 return 0;
 }
 
 bool AnyTwoNumbersInVectorAddUpToNumber(int number, vector<int> input_vector)
 {
-    // Initialize the empty vector for substraction values
-    vector<int> subctraction_vector;
-    // Loop for elements in the input vector and push back substraction values
+    // Initialize the set of subtraction values
+    set<int> subtraction_set;
+    // Loop for all numbers in the input vector 
+    // and insert subtraction values
     for(int i = 0; i < input_vector.size(); i++)
     {
-        subctraction_vector.push_back(number - input_vector[i]); 
-        // Loop the substraction_vector values
-        // Return true if the i-th value of the input vector is equal to element
-        // of the substraction_vector
-        for(int j = 0; j < subctraction_vector.size(); j++)
+        subtraction_set.insert(number - input_vector[i]);
+        // if value in the set return true
+        if (subtraction_set.find(input_vector[i]) != subtraction_set.end())
         {
-            if (input_vector[i] == subctraction_vector[j])
-            {
-                return true;
-            }
-        }    
-    }
+            return true;
+        }
+    }    
         return false;
 }
 ```
