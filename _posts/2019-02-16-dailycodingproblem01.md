@@ -49,6 +49,7 @@ if __name__ == "__main__":
 ```
 
 The solution in C++ is very similar. The only difference is that there is no ready function to check if the element is within the vector. Thus, I have implemented another loop that loops values in the subtraction vector and checks if the current iteration element is equal to one of them.
+{: .text-justify}
 
 ```cpp
 #include <vector>
@@ -116,5 +117,7 @@ bool AnyTwoNumbersInVectorAddUpToNumber(int number, vector<int> input_vector)
 ```
 
 The Python implementation is equipped with the set of tests. I have tested four scenarios: a list of positive integers, a list with negaitve integers, a list of the same values and a list of zeroes. All of them give the expected results.
+{: .text-justify}
 
-Please feel free to leave comments or suggestions below. 
+Please feel free to leave comments or suggestions below.
+{: .text-justify}
