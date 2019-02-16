@@ -6,16 +6,19 @@ excerpt: "My solution to the Daily Coding Problem #01"
 mathjax: "true"
 ---
 
-Looking for an opportunity to improve my coding skills I have encountered the website called [Daily Coding Problem](https://www.dailycodingproblem.com/). After signing up, you will receive a daily email with a coding question asked by the big tech companies during the interviews. I will try to include the solutions to the questions in at least two different languages and comment on implementation differences.{: .text-justify}
+Looking for an opportunity to improve my coding skills I have encountered the website called [Daily Coding Problem](https://www.dailycodingproblem.com/). After signing up, you will receive a daily email with a coding question asked by the big tech companies during the interviews. I will try to include the solutions to the questions in at least two different languages and comment on implementation differences.
+{: .text-justify}
 
 The first problem in the series is following:
 > Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
 > For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
 > Bonus: Can you do this in one pass?
 
-Let's define the problem. We have some integer number $$k$$ and the list of integer numbers of length $$n$$ such that $$ L = \{l_1, l_2, ..., l_n \}.$$ The number $$k$$ can be written as a sum of two numbers $$a$$ and $$b$$ such that $$k = a + b$$. Thus, if we make a set $$A =\{a : a = k - l_i\}, i \in (1, 2, ... , n)$$ the problem will have the solution if the the intersection of the set $$L$$ and the set $$A$$ is not empty.{: .text-justify}
+Let's define the problem. We have some integer number $$k$$ and the list of integer numbers of length $$n$$ such that $$ L = \{l_1, l_2, ..., l_n \}.$$ The number $$k$$ can be written as a sum of two numbers $$a$$ and $$b$$ such that $$k = a + b$$. Thus, if we make a set $$A =\{a : a = k - l_i\}, i \in (1, 2, ... , n)$$ the problem will have the solution if the the intersection of the set $$L$$ and the set $$A$$ is not empty.
+{: .text-justify}
 
-The implementation in Python can be coded in one loop. We start by defining the empty list for the subtraction results. Then loop elements in the input list and for each element save the subtraction result. After that, we check if the number we are currently iterating is within the list of subtraction results. If that is true then function returns true. If after the whole list has been iterated and none of the elements in the subtraction list is equal to any element in the input list the function returns false.{: .text-justify}
+The implementation in Python can be coded in one loop. We start by defining the empty list for the subtraction results. Then loop elements in the input list and for each element save the subtraction result. After that, we check if the number we are currently iterating is within the list of subtraction results. If that is true then function returns true. If after the whole list has been iterated and none of the elements in the subtraction list is equal to any element in the input list the function returns false.
+{: .text-justify}
 
 ```python
 def number_can_be_created_from_two_list_values(input_list, number):
