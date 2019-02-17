@@ -17,6 +17,9 @@ The first problem in the series is following:
 Let's define the problem. We have some integer $$k$$ and the list of integers of length $$n$$ such that $$ L = \{l_1, l_2, ..., l_n \}.$$ The number $$k$$ can be written as a sum of two numbers $$a$$ and $$b$$ such that $$k = a + b$$. Thus, if we make a set $$A =\{a : a = k - l_i\}, i \in \{1, 2, ... , n\}$$ the problem will have the solution if the the intersection of the set $$L$$ and the set $$A$$ is not empty.
 {: .text-justify}
 
+For example taking the numbers from the problem we have $$ L = \{10, 15, 3, 7\}.$$ and $$k=17$$. Thus, set $$A =\{7, 2, 14, 10\}$$ and the $$L \cap A = \{7, 10\}$$ so the number $$k$$ can be made up from two numbers in the set $$L$$.
+{: .text-justify}
+
 The implementation in Python can be coded in one loop. We start by defining an empty set for the subtraction results. Then loop elements in the input list and for each element save the subtraction result. After that, we check if the number we are currently iterating is within the set of subtraction results. If that is true then function returns true. If after the whole list has been iterated and none of the elements in the subtraction list is equal to any element in the input list the function returns false. The *in* operation for set has an average complexity of *O(1)* with the worst case complexity of *O(n)* thus, making it slightly faster than solution with second for loop which has average complexity of *O(n)*.
 {: .text-justify}
 
