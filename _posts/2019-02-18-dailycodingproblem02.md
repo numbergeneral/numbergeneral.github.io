@@ -28,3 +28,30 @@ $$ K_i = \{l_1, l_2, ... , l_{i-1}, l_{i+1}, ... , l_n \} $$
 The lists $$K_i$$ are created by removing the i-th element from the list $$L$$. Now with problem defined one may proceed to an example. Let's assume $$L=\{3, 2, 1\}$$, then the output we expect would be $$A = \{2 * 1, 3 * 1, 2 * 3\} = \{2, 3, 6\}$$. Now we may proceed to the actual implementation.
 {: .text-justify}
 
+The Python code is given below. The function takes the list of integers as the input and initializes the empty list of the same length. Then iterating over the input list elements it creates sub-list with the i-th element excluded and multiplies all of the sub-list elements. The result is place in the i-th place in the output list. Test solution is test in a couple of cases and each time it gives the desired result.
+
+```python
+def calculate_product_of_all_elements_except_ith(input_list):
+    output_list = [0] * len(input_list)
+    for i in range(0, len(input_list)):
+        multiplication_temp = 1
+        for j in (input_list[:i] + input_list[i+1 :]):
+            multiplication_temp *= j 
+        output_list[i] = multiplication_temp
+    return output_list
+
+def test_solution(test_dictionary):
+    for key, value in test_dictionary.items():
+        results = calculate_product_of_all_elements_except_ith(value)
+        print("Test name:", key, "\nThe input numbers are:", value,
+        "\nThe results are:", results)
+
+if __name__ == "__main__":
+    test_dictionary = {"Positive integer test":[1, 2, 3],
+                    "Negative integer test":[1, -2, 3],
+                    "Same value test": [2, 2, 2],
+                    "Zero test": [0, 0, 0]}
+    test_solution(test_dictionary)
+```
+
+Please feel free to leave comments or suggestions below.
