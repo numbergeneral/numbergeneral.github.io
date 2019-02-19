@@ -29,6 +29,7 @@ The lists $$K_i$$ are created by removing the i-th element from the list $$L$$. 
 {: .text-justify}
 
 The Python code is given below. The function takes the list of integers as the input and initializes the empty list of the same length. Then iterating over the input list elements it creates sub-list with the i-th element excluded and multiplies all of the sub-list elements. The result is place in the i-th place in the output list. Test solution is test in a couple of cases and each time it gives the desired result.
+{: .text-justify}
 
 ```python
 def calculate_product_of_all_elements_except_ith(input_list):
