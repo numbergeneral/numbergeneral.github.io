@@ -25,5 +25,6 @@ $$ A = \{\prod_{i=1}^{n-1} K_1, \prod_{i=1}^{n-1} K_2, ... , \prod_{i=1}^{n-1} K
 
 $$ K_i = \{l_1, l_2, ... , l_{i-1}, l_{i+1}, ... , l_n \} $$
 
-The lists $$K_i$$ are created by removing the i-th element from the list $$L$$. Now with problem defined one may proceed to the implementation. 
+The lists $$K_i$$ are created by removing the i-th element from the list $$L$$. Now with problem defined one may proceed to an example. Let's assume $$L=\{3, 2, 1\}$$, then the output we expect would be $$A = \{2 * 1, 3 * 1, 2 * 3\} = \{2, 3, 6\}$$. Now we may proceed to the actual implementation.
 {: .text-justify}
+
