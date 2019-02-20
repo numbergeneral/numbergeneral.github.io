@@ -6,7 +6,7 @@ excerpt: "My solution to the Daily Coding Problem #02"
 mathjax: "true"
 ---
 
-The Daily Coding Problem #02 is the following:
+The [Daily Coding Problem](https://www.dailycodingproblem.com/) #02 is the following:
 {: .text-justify}
 >Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.
 >For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     test_solution(test_dictionary)
 ```
 
-The C++ code is very similar and there are no significant implementation differences. The dissection of the list used in Python has been replace by the if-else block. If the iterators are equal the inner loop pass is skipped, effectively excluding the i-th number from calculation of the product. Again the complexity of this script is $$O(n^2)$$.
+The C++ code is very similar and there are no significant implementation differences. The dissection of the list used in Python has been replaced by the if-else block. If the iterators are equal the inner loop pass is skipped, effectively excluding the i-th number from calculation of the product. Again the complexity of this script is $$O(n^2)$$.
 {: .text-justify}
 
 ```cpp
