@@ -56,7 +56,7 @@ if __name__ == "__main__":
 ```
 
 The C++ code is very similar and there are no significant implementation differences.
-: .text-justify}
+{: .text-justify}
 
 ```cpp
 #include <iostream>
