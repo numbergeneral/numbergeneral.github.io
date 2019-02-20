@@ -55,4 +55,58 @@ if __name__ == "__main__":
     test_solution(test_dictionary)
 ```
 
+The C++ code is very similar and there are no significant implementation differences.
+: .text-justify}
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> CalculateProductOfListElementsExceptForIth(
+    vector<int> input_vector);
+
+int main()
+{
+    vector<int> test_list{1, 2, 3};
+    vector<int> func_result;
+
+    func_result = CalculateProductOfListElementsExceptForIth(
+        test_list);
+
+    cout << "The outputs of the program are: ";
+    for(int i = 0; i < func_result.size(); i++)
+    {
+        cout << func_result[i] << " ";
+    }
+    cout << "\n";
+
+    return 0;
+}
+
+vector<int> CalculateProductOfListElementsExceptForIth(
+    vector<int> input_vector)
+{
+    vector<int> output_vector(input_vector.size(), 0);
+    for(int i=0; i < input_vector.size(); i++)
+    {
+        int multiplication_temp = 1;
+        for(int j=0; j < input_vector.size(); j++)
+        {
+            if(j == i){
+                continue;
+            }
+            else
+            {
+                multiplication_temp *= input_vector[j];
+            }
+        }
+        output_vector[i] = multiplication_temp;
+    }
+    return output_vector;
+}
+```
+
+
 Please feel free to leave comments or suggestions below.
