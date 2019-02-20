@@ -13,7 +13,7 @@ The [Daily Coding Problem](https://www.dailycodingproblem.com/) #02 is the follo
 >Follow-up: what if you can't use division?
 {: .text-justify}
 
-With the division allowed the definition of the problem is quite straightforward. We have a list of integers of length $$n$$ $$L = \{l_1, l_2, ..., l_n\}$$. The output of the program is the list of integers that are products of all elements except for the element at the i-th place. If we define the output list as $$A$$ this can be written as:
+With the division allowed the definition of the problem is quite straightforward. We have a list of integers of length $$n$$ defined as $$L = \{l_1, l_2, ..., l_n\}$$. The output of the program is the list of integers that are products of all elements except for the element at the i-th place. If we define the output list as $$A$$ this can be written as:
 {: .text-justify}
 
 $$ A = \{\dfrac{\prod_{i=1}^{n} l_i}{l_1}, \dfrac{\prod_{i=1}^{n} l_i}{l_2}, ... , \dfrac{\prod_{i=1}^{n} l_i}{l_n}\}$$
