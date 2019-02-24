@@ -46,4 +46,18 @@ Geometric Brownian Motion has a cure for the drawbacks of the Arithmetic Brownia
 The method for approximating the expected value of some function that involves GBM is called the Monte Carlo method. By using the law of large numbers that tell us that given the sequence of identically distributed independent random variables $$Y_i$$, then with probability one the sequence $$\frac{1}{N} \sum_{i=1}^{N} Y_i$$ converges to $$\mathbf{E} (Y_i)$$. So to get the expected value a random variable $$x$$ form the $$N(0, 1)$$ distribution is to be drawn and then the value of the is function computed. After many repeats, the average of outputs is taken to get the estimate of the expected value.
 {: .text-justify}
 
-I will start the implementation of the option pricing system with the implementation of a simple random number generator class, that will provide random number to the Monte Carlo option pricer.
+I will start building the code base by implmenting simple pricer of European option using Monte Carlo. Due to its simplicity as well as possibility to comapre the results with the Black-Scholes closed form solution it will make great test case for the start.
+{: .text-justify}
+
+The European option price in the Black-Scholes pricing theory is defined as the
+{: .text-justify}
+
+$$exp(-rT) \mathbf{E} (f(S_T))$$
+
+where $$r$$ is defined as the continiously compounding rate of growth of the riskless bond, $$S_T$$ is the price of the underlying at the expiry time $$T$$ and $$f$$ the payoff function. Using the assumption that the price of the underlying follows GBM and noticing that since $$B(t)$$ is a Brownian motion, then $$B(T)$$ is distributed as a Gaussian variable with mean zero and variance $$T$$ the price of the vanilla European option is given as
+{: .text-justify}
+
+$$exp(-rT) \mathbf{E} f\{S(0)exp[(\mu - \frac{1}{2} \sigma ^2)T + \sigma \sqrt{T} N(0,1)]\}$$
+
+In the older versions of C++ the pesudorandom number generator was to be implmented by the developer. Since C++11 the language is equipped with pseudorandom number generator provided by package *random*. By importing the random module, one can choose from wide range of ready functions generating the pseudorandom numbers.
+{: .text-justify}
