@@ -124,3 +124,5 @@ double EuropeanMC(double expiry,
     return mean_result;
 }
 ```
+
+The next step would be to implement the Black-Scholes closed from solution pricing function. It will serve as the benchmark and validation in the test cases. It will also allow us to see the speed of Monte Carlo convergence in terms of simulations required to run. 
