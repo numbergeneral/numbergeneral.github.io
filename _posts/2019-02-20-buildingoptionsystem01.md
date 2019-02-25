@@ -43,22 +43,84 @@ $$S(T) = S(0)*exp[(\mu - \frac{1}{2} * \sigma ^2)T + \sigma B(T)]$$
 Geometric Brownian Motion has a cure for the drawbacks of the Arithmetic Brownian Motion applied to the financial modelling problems. Solution to GBM being an exponential cannot become negative. And the GBM variance depends linearly on the level of the variable.
 {: .text-justify}
 
-The method for approximating the expected value of some function that involves GBM is called the Monte Carlo method. By using the law of large numbers that tell us that given the sequence of identically distributed independent random variables $$Y_i$$, then with probability one the sequence $$\frac{1}{N} \sum_{i=1}^{N} Y_i$$ converges to $$\mathbf{E} (Y_i)$$. So to get the expected value a random variable $$x$$ form the $$N(0, 1)$$ distribution is to be drawn and then the value of the is function computed. After many repeats, the average of outputs is taken to get the estimate of the expected value.
-{: .text-justify}
-
-I will start building the code base by implmenting simple pricer of European option using Monte Carlo. Due to its simplicity as well as possibility to comapre the results with the Black-Scholes closed form solution it will make great test case for the start.
-{: .text-justify}
-
-The European option price in the Black-Scholes pricing theory is defined as the
+I will start building the code base by implementing simple pricer of European option using Monte Carlo method as well as pricer using the Black-Scholes closed form solution. Due to its simplicity as well as possibility to compare the results with the Black-Scholes closed form solution it will make great test case for the start. The European option price of the call option paying not dividends in the Black-Scholes pricing theory is defined as the
 {: .text-justify}
 
 $$exp(-rT) \mathbf{E} (f(S_T))$$
 
-where $$r$$ is defined as the continiously compounding rate of growth of the riskless bond, $$S_T$$ is the price of the underlying at the expiry time $$T$$ and $$f$$ the payoff function. Using the assumption that the price of the underlying follows GBM and noticing that since $$B(t)$$ is a Brownian motion, then $$B(T)$$ is distributed as a Gaussian variable with mean zero and variance $$T$$ the price of the vanilla European option is given as
+where $$r$$ is the continuously compounding rate of growth of the riskless bond, $$S_T$$ is the price of the underlying at the expiry time $$T$$ and $$f$$ the payoff function. Using the assumption that the price of the underlying follows GBM and noticing that since $$B(t)$$ is a Brownian motion, then $$B(T)$$ is distributed as a Gaussian variable with mean zero and variance $$T$$ the price of the vanilla European option is given as
 {: .text-justify}
 
 $$exp(-rT) \mathbf{E} f\{S(0)exp[(\mu - \frac{1}{2} \sigma ^2)T + \sigma \sqrt{T} N(0,1)]\}$$
 
-In the older versions of C++ the pesudorandom number generator was to be implmented by the developer. Since C++11 the language is equipped with pseudorandom number generator provided by package *random*. By importing the random module, one can choose from wide range of ready functions generating the pseudorandom numbers.
+The method for approximating the expected value of some function that involves GBM is called the Monte Carlo method. By using the law of large numbers that tell us that given the sequence of identically distributed independent random variables $$Y_i$$, then with probability one the sequence $$\frac{1}{N} \sum_{i=1}^{N} Y_i$$ converges to $$\mathbf{E} (Y_i)$$. So to get the expected value a random variable $$x$$ form the $$N(0, 1)$$ distribution is to be drawn and then the value of the is function computed. After many repeats, the average of outputs is taken to get the estimate of the expected value.
 {: .text-justify}
 
+Most of the functions required to calculate the expectation using the Monte Carlo method are available out of the box in C++. Before C++11 there was no ready made pseudo-random number generator. Therefore, in the older versions of C++ the pseudorandom number generator was to be implemented by the developer. Since C++11 the language is equipped with pseudorandom number generator provided by package *random*. By importing the random module, one can choose from wide range of functions used in generating the pseudorandom numbers.
+{: .text-justify}
+
+The implementation will start with the declaration of the header file. In the Monte Carlo pricer we would need only one function, namely the pricer itself. The pricing function will take as an input the mentioned earlier parameters.
+{: .text-justify}
+
+```cpp
+#ifndef EUROPEANMC_H
+#define EUROPEANMC_H
+
+double EuropeanMC(double expiry,
+                  double strike,
+                  double spot,
+                  double vol,
+                  double rf_rate,
+                  int number_of_paths);
+
+#endif
+```
+
+The implementation of the pricer function divided into two parts. First we prepare all variables that are not calculated directly in Monte Carlo loop in order to speed-up the calculation. Then the actual simulation takes place and after that the mean of all simulated prices is returned.  
+{: .text-justify}
+
+```cpp
+#include "EuropeanMC.hpp"
+#include <random>
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double EuropeanMC(double expiry,
+                  double strike,
+                  double spot,
+                  double vol,
+                  double rf_rate,
+                  int number_of_paths)
+{
+    double variance = vol * vol * expiry;
+    double root_variance = sqrt(variance);
+    double ito_correction = -0.5 * variance;
+
+    double moved_spot = spot * exp(rf_rate * expiry + ito_correction);
+    double temp_spot;
+    double rolling_sum = 0;
+
+    default_random_engine generator;
+    normal_distribution<double> distribution(0.0, 1.0);
+
+    double payoff = 0;
+    for(int i = 0; i < number_of_paths; i++)
+    {
+        double random_number = distribution(generator);
+        temp_spot = moved_spot * exp(root_variance * random_number); 
+        payoff = temp_spot - strike;
+        if (payoff < 0)
+        {
+            payoff = 0;
+        }
+        rolling_sum += payoff;
+    }
+
+    double mean_result = rolling_sum / number_of_paths;
+    mean_result *= exp(-rf_rate * expiry);
+
+    return mean_result;
+}
+```
