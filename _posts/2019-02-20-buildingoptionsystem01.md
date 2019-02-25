@@ -61,3 +61,4 @@ $$exp(-rT) \mathbf{E} f\{S(0)exp[(\mu - \frac{1}{2} \sigma ^2)T + \sigma \sqrt{T
 
 In the older versions of C++ the pesudorandom number generator was to be implmented by the developer. Since C++11 the language is equipped with pseudorandom number generator provided by package *random*. By importing the random module, one can choose from wide range of ready functions generating the pseudorandom numbers.
 {: .text-justify}
+
