@@ -11,7 +11,7 @@ header:
 I have always been fascinated about combining computer science, finance and mathematics. I hold Master's degree and MBA in Finance and now I am working towards a degree in Mathematics.
 {: .text-justify}
 
-At the fourth year of Finance Studies I have started my career in Risk as the Market Risk Analyst in PGE, one of the biggest Polish companies, which produces and trades power. Next, I have worked as a Market Risk Analyst for a Swiss power trading company Axpo Trading. After that I have joined EY as a Risk Consultant and finally I landed a job in Citi were I work currently as a Model Validator. 
+At the fourth year of Finance Studies I have started my career in Risk as the Market Risk Analyst in PGE, one of the biggest Polish companies, which produces and trades power. The next step in my professional path was a Market Risk Analyst for a Swiss power trading company Axpo Trading. After that I have joined EY as a Risk Consultant and finally landed a job in Citi as a Model Validator. 
 {: .text-justify}
 
 During my career I have participated twice in the [Global Management Challenge](http://globalmanagementchallenge.pt/worldgmc/). Together with a team we first won the [National Vice-Championship](http://gmcpoland.pl/15-edycja-konkursu-gmc-poland-2014/), a year after [National Championship](https://gmcpoland.pl/en/15-edition-of-global-management-challenge-poland/) and represented Poland in World Championships in Macau, China.
