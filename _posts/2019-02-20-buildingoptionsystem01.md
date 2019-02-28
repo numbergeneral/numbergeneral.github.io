@@ -5,9 +5,12 @@ tags: [programming, quantitative finance, c++]
 excerpt: "The post covers the basic option pricing theory and a prototype of a random number generator class."
 mathjax: "true"
 ---
+## Introduction
 
 In this series of blog entries I will describe my progress towards building a versatile yet compact option pricing system in C++. I will follow closely a book by Mark Joshi [C++ Design Patterns and Derivatives Pricing](https://www.amazon.com/Patterns-Derivatives-Pricing-Mathematics-Finance/dp/0521721628). I will use this book as a guideline but at the same time I will try to extend and polish things that were treated vaguely in the book. Thus, I will include numerous other sources and references. The idea of the project is to start on very basics and build on them to develop more sophisticated tools. I will try to focus on rather proven models with emphasis on their implementation as an integral part of bigger system.
 {: .text-justify}
+
+## Arithmetic and Geometric Brownian Motion
 
 I will start by covering the very basics of modelling the stock price evolution. The evolution usually involves a drift component that represents steady growth over time with some diffusion component that represents the random deviation from the drift. If the financial underlying could be modelled without a stochastic component then there would not be a reason for quantitative finance to exist in and even if so then not to its current extent. One of the simplest random processes that satisfies the mentioned conditions is the Arithmetic Brownian Motion. If we denote our random process by $$S$$ then if this process follows Arithmetic Brownian Motion it would be specified by the following SDE: 
 {: .text-justify}
@@ -42,6 +45,8 @@ $$S(T) = S(0)*exp[(\mu - \frac{1}{2} * \sigma ^2)T + \sigma W(T)]$$
 
 Geometric Brownian Motion has a cure for the drawbacks of the Arithmetic Brownian Motion applied to the financial modelling problems. Solution to GBM being an exponential cannot become negative. And the GBM variance depends linearly on the level of the variable.
 {: .text-justify}
+
+## Monte Carlo Pricer Implementation 
 
 I will start building the code base by implementing simple pricer of European option using Monte Carlo method as well as pricer using the Black-Scholes closed form solution. Due to its simplicity as well as possibility to compare the results with the Black-Scholes closed form solution it will make great test case for the start. The European option price of the call option paying not dividends in the Black-Scholes pricing theory is defined as the
 {: .text-justify}
@@ -126,6 +131,8 @@ double EuropeanMC(double expiry,
     return mean_result;
 }
 ```
+
+## Black-Scholes Closed Form Solution Formula Implementation
 
 The next step would be to implement the Black-Scholes closed from solution pricing function. It will serve as the benchmark and indicator of implementation correctness in the test cases. It will also allow us to examine the speed of Monte Carlo convergence. The convergence will be achieved when the error between the result of closed form solution and the result of Monte Carlo will be sufficiently small.
 {: .text-justify}
@@ -215,6 +222,8 @@ double BlackScholesCFS(double expiry,
     return option_price;
 }
 ```
+
+## Conclusions
 
 The next blog entry will cover the comparison and testing of those files, convergence of the Monte Carlo method and first steps towards building an unified, object oriented system for pricing derivatives. 
 {: .text-justify}
