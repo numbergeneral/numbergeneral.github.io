@@ -25,7 +25,7 @@ $$S(T) =  S(0) + \mu T + \sigma W(T)$$
 Thus, $$S(T)$$ is equal to the deterministic term $$S(0) + \mu T$$ and the stochastic term, that is normally distributed random variable $$\sigma W(T)$$. The main drawbacks of Arithmetic Brownian Motion in modelling the stock prices is that first of all it describes the absolute change in value, while investors are rather interested in rate of return. Second of all since $$W(T)$$ is a normal variable therefore, the whole equation can assume negative values, which is impossible in the financial world. This process would be good to describe a variable that grows at constant rate but with the uncertainty of growth increasing with time.
 {: .text-justify}
 
-The candidate for an optimal process to describe the behaviour of the stock price would have a fix for the two drawbacks mentioned above. Therefore, the next on the list is the Geometric Brownian Motion (GBM). It is a model for the relative change in a random process. 
+The candidate for an optimal process to describe the behavior of the stock price would have a fix for the two drawbacks mentioned above. Therefore, the next on the list is the Geometric Brownian Motion (GBM). It is a model for the relative change in a random process. 
 {: .text-justify}
 
 $$dS(t) = \mu S(t)dt + \sigma S(t)dW(t)$$
@@ -41,7 +41,7 @@ $$d ln[S] = (\mu - \frac{1}{2}\sigma)dt + \sigma dW$$
 and then by integrating and taking exponents we get the final expression for $$S(T)$$:
 {: .text-justify}
 
-$$S(T) = S(0)*exp[(\mu - \frac{1}{2} * \sigma ^2)T + \sigma W(T)]$$
+$$S(T) = S(0)*e^{(\mu - \frac{1}{2} * \sigma ^2)T + \sigma W(T)}$$
 
 Geometric Brownian Motion has a cure for the drawbacks of the Arithmetic Brownian Motion applied to the financial modelling problems. Solution to GBM being an exponential cannot become negative. And the GBM variance depends linearly on the level of the variable.
 {: .text-justify}
@@ -51,12 +51,12 @@ Geometric Brownian Motion has a cure for the drawbacks of the Arithmetic Brownia
 I will start building the code base by implementing simple pricer of European option using Monte Carlo method as well as pricer using the Black-Scholes closed form solution. Due to its simplicity as well as possibility to compare the results with the Black-Scholes closed form solution it will make great test case for the start. The European option price of the call option paying not dividends in the Black-Scholes pricing theory is defined as the
 {: .text-justify}
 
-$$exp(-rT) \mathbf{E} (f(S_T))$$
+$$e^{-rT} \mathbf{E} (f(S_T))$$
 
 where $$r$$ is the continuously compounding rate of growth of the riskless bond, $$S_T$$ is the price of the underlying at the expiry time $$T$$ and $$f$$ the payoff function. Using the assumption that the price of the underlying follows GBM and noticing that since $$W(t)$$ is a Brownian motion, then $$W(T)$$ is distributed as a Gaussian variable with mean zero and variance $$T$$ the price of the vanilla European option is given as
 {: .text-justify}
 
-$$exp(-rT) \mathbf{E} [f(S(0)e^{(\mu - \frac{1}{2} \sigma ^2)T + \sigma \sqrt{T} N(0,1)})]$$
+$$e^{-rT} \mathbf{E} [f(S(0)e^{(\mu - \frac{1}{2} \sigma ^2)T + \sigma \sqrt{T} N(0,1)})]$$
 
 The method for approximating the expected value of some function that involves GBM is called the Monte Carlo method. By using the law of large numbers that tell us that given the sequence of identically distributed independent random variables $$Y_i$$, then with probability one the sequence $$\frac{1}{N} \sum_{i=1}^{N} Y_i$$ converges to $$\mathbf{E} (Y_i)$$. So to get the expected value a random variable $$x$$ form the $$N(0, 1)$$ distribution is to be drawn and then the value of the is function computed. After many repeats, the average of outputs is taken to get the estimate of the expected value.
 {: .text-justify}
@@ -72,11 +72,14 @@ The implementation will start with the declaration of the header file. In the Mo
 #ifndef EUROPEANMC_H
 #define EUROPEANMC_H
 
+enum OptionType {call, put};
+
 double EuropeanMC(double expiry,
                   double strike,
                   double spot,
                   double vol,
                   double rf_rate,
+                  OptionType type,
                   int number_of_paths);
 
 #endif
@@ -89,7 +92,6 @@ The implementation of the pricer function divided into two parts. First we prepa
 // EuropeanMC.cpp
 #include "EuropeanMC.hpp"
 #include <random>
-#include <iostream>
 #include <cmath>
 
 using namespace std;
@@ -99,11 +101,12 @@ double EuropeanMC(double expiry,
                   double spot,
                   double vol,
                   double rf_rate,
+                  OptionType type,
                   int number_of_paths)
 {
-    double variance = vol * vol * expiry;
-    double root_variance = sqrt(variance);
-    double ito_correction = -0.5 * variance;
+    double time_variance = vol * vol * expiry;
+    double root_time_variance = sqrt(time_variance);
+    double ito_correction = -0.5 * time_variance;
 
     double moved_spot = spot * exp(rf_rate * expiry + ito_correction);
     double temp_spot;
@@ -116,8 +119,17 @@ double EuropeanMC(double expiry,
     for(int i = 0; i < number_of_paths; i++)
     {
         double random_number = distribution(generator);
-        temp_spot = moved_spot * exp(root_variance * random_number); 
-        payoff = temp_spot - strike;
+        temp_spot = moved_spot * exp(root_time_variance * random_number); 
+        
+        if(type == call)
+        {
+            payoff = temp_spot - strike;
+        }
+        else 
+        {
+            payoff = strike - temp_spot;
+        }
+        
         if (payoff < 0)
         {
             payoff = 0;
