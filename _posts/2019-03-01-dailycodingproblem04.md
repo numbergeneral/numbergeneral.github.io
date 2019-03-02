@@ -18,17 +18,17 @@ mathjax: "true"
 First let's define the in-place algorithm. It is one that operates directly on its input and changes it, instead of creating and returning a new object. It does mean that it does not create the new copy of the input. I will bend this rule slightly in the problem definition, but the implementation will have only the in-place input modification.   
 {: .text-justify}
 
-We have an integer array $$L$$ of length $$n$$ such that $$L = \{l_1, l_2, \dots , l_n\}$$. We need to find the first missing positive integer in this array. Since we are interested only in positive numbers we may create an ordered array $$L' = \{a \in \mathbb{N}: a > 0 \wedge a \in L\ \wedge a_{i} > a_{j} \text{ for } i > j\}$$ of length $$m$$. If the resulting array $$L'$$ is empty we need to return $$1$$ since [zero is neither positive nor negative](https://en.wikipedia.org/wiki/0). In other case we end up with an array of natural numbers $$L'$$ of length $$m<n$$. Then we can define a function from $$L'$$ to $$\mathbb{N}$$ as 
+We have an integer array $$L$$ of length $$n$$ such that $$L = \{l_1, l_2, \dots , l_n\}$$. We need to find the first missing positive integer in this array. Since we are interested only in positive numbers we may create an ordered array $$L' = \{a \in \mathbb{N}: a > 0 \wedge a \in L\ \wedge a_{i} > a_{j} \text{ for } i > j\}$$ of length $$m$$. If the resulting array $$L'$$ is empty we need to return $$1$$ since [zero is neither positive nor negative](https://en.wikipedia.org/wiki/0). In other case we end up with an array of natural numbers $$L'$$ of length $$m=<n$$. Then we can define a function $$f:L' \rightarrow \mathbb{N}$$ as 
 {: .text-justify}
 
-$$ 
-f = \begin{cases}
+$$
+f(a_i) = \begin{cases}
   a_{i}+1, & \text{if } a_{i+1} - a_{i} \neq 1, i \in \{1, \dots, m-1\}\\
   a_{m}+1, & \text{otherwise} .
 \end{cases}
 $$
 
-Finally to get the lowest natural number not in $$L'$$ would be $$\operatorname{min}(f(L'))$$.
+Finally, in order to get the lowest natural number that is not in $$L'$$ one needs to take the minimum, so $$\operatorname{min}(f(L'))$$ is the problem solution.
 {: .text-justify}
 
 Before the actual implementation let's go through the example. Let's take the array given in the problem definition, thus $$L=\{3, 4, -1, 1\}$$. Then we proceed by creating array $$L'=\{1, 3, 4\}$$. Since the array is not empty we will apply the function $$f$$ to it $$f(L') = \{2, 5, 5\}$$. The solution to the problem is the minimum of the resulting array.
@@ -89,4 +89,9 @@ int find_first_missing_integer(vector<int> input_vector)
     return input_vector[vector_length] + 1;
 }
 ```
+###  Alternative approach
+The alternative way would be to iterate array $$L'$$ and compare each of the elements to its index. If the array element is not equal to its index return the previous index value incremented by one else at the end of iteration return the last index value incremented by one. 
+{: .text-justify}
 
+Please feel free to leave comments or suggestions below.
+{: .text-justify}

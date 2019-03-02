@@ -237,7 +237,7 @@ double BlackScholesCFS(double expiry,
 
 ## Conclusions
 
-The next blog entry will cover the comparison and testing of those files, convergence of the Monte Carlo method and first steps towards building an unified, object oriented system for pricing derivatives. 
+The next blog entry will cover the comparison and testing of those files, convergence of the Monte Carlo method and first steps towards building the unified, object oriented system for pricing derivatives. 
 {: .text-justify}
 
 sources:  
