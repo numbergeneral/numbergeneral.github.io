@@ -41,7 +41,7 @@ $$d ln[S] = (\mu - \frac{1}{2}\sigma)dt + \sigma dW$$
 and then by integrating and taking exponents we get the final expression for $$S(T)$$:
 {: .text-justify}
 
-$$S(T) = S(0)*e^{(\mu - \frac{1}{2} * \sigma ^2)T + \sigma W(T)}$$
+$$S(T) = S(0)e^{(\mu - \frac{1}{2} \sigma ^2)T + \sigma W(T)}$$
 
 Geometric Brownian Motion has a cure for the drawbacks of the Arithmetic Brownian Motion applied to the financial modelling problems. Solution to GBM being an exponential cannot become negative. And the GBM variance depends linearly on the level of the variable.
 {: .text-justify}
@@ -51,14 +51,14 @@ Geometric Brownian Motion has a cure for the drawbacks of the Arithmetic Brownia
 I will start building the code base by implementing simple pricer of European option using Monte Carlo method as well as pricer using the Black-Scholes closed form solution. Due to its simplicity as well as possibility to compare the results with the Black-Scholes closed form solution it will make great test case for the start. The European option price of the call option paying not dividends in the Black-Scholes pricing theory is defined as the
 {: .text-justify}
 
-$$e^{-rT} \mathbf{E} (f(S_T))$$
+$$e^{-rT} \mathbf{E} [f(S_T)]$$
 
 where $$r$$ is the continuously compounding rate of growth of the riskless bond, $$S_T$$ is the price of the underlying at the expiry time $$T$$ and $$f$$ the payoff function. Using the assumption that the price of the underlying follows GBM and noticing that since $$W(t)$$ is a Brownian motion, then $$W(T)$$ is distributed as a Gaussian variable with mean zero and variance $$T$$ the price of the vanilla European option is given as
 {: .text-justify}
 
 $$e^{-rT} \mathbf{E} [f(S(0)e^{(\mu - \frac{1}{2} \sigma ^2)T + \sigma \sqrt{T} N(0,1)})]$$
 
-The method for approximating the expected value of some function that involves GBM is called the Monte Carlo method. By using the law of large numbers that tell us that given the sequence of identically distributed independent random variables $$Y_i$$, then with probability one the sequence $$\frac{1}{N} \sum_{i=1}^{N} Y_i$$ converges to $$\mathbf{E} (Y_i)$$. So to get the expected value a random variable $$x$$ form the $$N(0, 1)$$ distribution is to be drawn and then the value of the is function computed. After many repeats, the average of outputs is taken to get the estimate of the expected value.
+The method for approximating the expected value of some function that involves GBM is called the Monte Carlo method. By using the law of large numbers that tell us that given the sequence of identically distributed independent random variables $$Y_i$$, then with probability one the sequence $$\frac{1}{N} \sum_{i=1}^{N} Y_i$$ converges to $$\mathbf{E} [Y_i]$$. So to get the expected value a random variable $$x$$ form the $$N(0, 1)$$ distribution is to be drawn and then the value of the is function computed. After many repeats, the average of outputs is taken to get the estimate of the expected value.
 {: .text-justify}
 
 Most of the functions required to calculate the expectation using the Monte Carlo method are available out of the box in C++. Before C++11 there was no ready made pseudo-random number generator. Therefore, in the older versions of C++ the pseudorandom number generator was to be implemented by the developer. Since C++11 the language is equipped with pseudorandom number generator provided by package *random*. By importing the random module, one can choose from wide range of functions used in generating the pseudorandom numbers.
