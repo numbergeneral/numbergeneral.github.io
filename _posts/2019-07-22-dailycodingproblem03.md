@@ -94,7 +94,7 @@ The knowledge of Python built-in functions can make the solution shorter and muc
 To revert the string back into object I will use a function 'eval' that evaluates a string as a fragment of Python code. Thus, by leveraging built-in Python functions we may deliver the whole solution of the problem using only a couple lines of code.
 {: .text-justify}
 
-``` Python
+```python
 class Node: 
     def __init__(self, val, left=None, right=None): 
         self.val = val 
