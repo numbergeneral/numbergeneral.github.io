@@ -25,7 +25,7 @@ def cons(a, b):
 
 ## The definition of the problem
 
-This problem does not have a strick mathematical definition. The clue to solving it is to notice what exactly does 'cons' return. The function 'cons' takes two (let's assume) integers and returns function 'pair'. Function 'pair' in turn takes function as an input and returns the output of its input function applied with parameters 'a' and 'b'. So in order to solve this problem we need create a function that will take a function as a parameter and return output of passing a function to input function.    
+This problem does not have a strict mathematical definition. The clue to solving it is to notice what exactly 'cons' returns. The function 'cons' takes two (let's assume) integers and returns function 'pair'. Function 'pair' in turn takes function as an input and returns the output of its input function applied with parameters 'a' and 'b'. So in order to solve this problem we need create a function that will take a function as a parameter and return output of passing a function to input function.    
 {: .text-justify}
 
 ## The solution
