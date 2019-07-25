@@ -113,13 +113,14 @@ assert deserialized_tree.left.left.val == "left.left"
 
 ### C++
 
-The C++ solution is much more verbose and presents a couple of differences in comparison with Python solution. First of all both C++ classes and structs cannot contain instances of itself. It will result in infinite recursive call to the constructor, thus resulting in object of infinite size. However, they can contain pointers to their type. Thus I will create a simple node struct that contains a sting as its value and pointers to the child nodes. 
+The C++ solution is much more verbose and presents a couple of differences in comparison with Python solution. First of all both C++ classes and structs cannot contain instances of itself. It will result in infinite recursive call to the constructor, thus resulting in object of infinite size. However, they can contain pointers to their type. Thus I will create a simple node struct that contains a string as its value and pointers to the child nodes. 
 {: .text-justify}
 
 The serialization function follows the same logic as the one from Python prototype. It takes the Node object as an input and through recursion returns a string representation of the tree.       
 {: .text-justify}
 
 The deserialization function is split into two parts. First function splits the string by commas and saves the result in the vector of strings. The second function is the one that reads the elements from the vector and based on their value (if the string is a value of the node or empty node) recursively creates new nodes and assigns their values.
+{: .text-justify}
 
 ```cpp
 #include <iostream>
