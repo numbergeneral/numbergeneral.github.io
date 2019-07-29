@@ -6,12 +6,6 @@ excerpt: "My solution to the Daily Coding Problem #06"
 mathjax: "true"
 ---
 
-<style>
-.tablelines table, .tablelines td, .tablelines th {
-        border: 1px solid black;
-        }
-</style>
-
 ## The problem
 The [Daily Coding Problem](https://www.dailycodingproblem.com/) #06 is the following:
 
@@ -33,7 +27,6 @@ To define this problem well we need to gain insight on the bitwise XOR operation
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
 | 1 | 1 | 0 |  
-{: .tablelines}
 
 </center>
 
@@ -48,12 +41,12 @@ From the paragraph above me may already draw some conclusions about pros and con
 
 Let's go through an example first. We have an empty list and will add two nodes. To make things simpler let's assume that addresses are 6 digit long. We start with an empty list, so the first node will have neither predecessor nor successor and will point to null in both cases.
 {: .text-justify}
+
 <center>
 
 | NULL | NULL | Node_0->xpn = XOR(NULL, NULL) |
-|---|:-:|:---:|
+|---|:---:|:---:|
 | 000000 | 000000 | 000000 |  
-{: .tablelines}
 
 </center>  
   
@@ -62,9 +55,8 @@ Now let's add a new node. We need to make sure that the old node points to NULL 
 <center>
 
 | *Node_0 | NULL | Node_1->xpn = XOR(\*Node_0, NULL) |
-|---|:-:|:---:|
+|---|:---:|:---:|
 | 010101 | 000000 | 010101 |
-{: .tablelines}
 
 </center>  
   
@@ -73,14 +65,12 @@ And now we also should update the link for the old node:
 <center>
 
 | Node_0->xpn | NULL | *next = XOR(Node_0->xpn, NULL) |
-|---|:-:|:---:|
+|---|:---:|:---:|
 | 000000 | 000000 | 000000 |
-{: .tablelines}
   
 | *Node_1 | *next | Node_0->xpn = XOR(\*Node_1, \*next) |
-|---|:-:|:---:|
+|---|:----:|:---:|
 | 111001 | 000000 | 111001 |
-{: .tablelines}
 
 </center>  
   
@@ -89,9 +79,8 @@ Now let's add the final node. We will repeat operation from the last step:
 <center>
 
 | *Node_1 | NULL | Node_2->xpn = XOR(\*Node_1, NULL) |
-|---|:-:|:---:|
+|---|:----:|:---:|
 | 111001 | 000000 | 111001 |
-{: .tablelines}
 
 </center>  
   
@@ -100,14 +89,12 @@ And now we also should update the link for the old node:
 <center>
 
 | Node_1->xpn | NULL | *next = XOR(Node_1->xpn, NULL) |
-|---|:-:|:---:|
+|---|:----:|:---:|
 | 010101 | 000000 | 010101 |
-{: .tablelines}
   
 | *Node_2 | *next | Node_1->xpn = XOR(\*Node_2, \*next) |
-|---|:-:|:---:|
+|---|:----:|:---:|
 | 001101 | 010101 | 011000 |
-{: .tablelines}
 
 </center>
   
@@ -116,10 +103,9 @@ So finally we have:
 <center>
 
 || Node_0 | Node_1 | Node_2 |
-|---|---|:-:|:---:|
+|---|---|:----:|:---:|
 |address| 010101 | 111001 | 001101 |
 |xpn| 111001 | 011000 | 111001 |
-{: .tablelines}
 
 </center>
   
@@ -128,9 +114,8 @@ Now let's traverse the list. To do so we need an address of the head node, then 
 <center>
 
 | *Node_0 | *Node_1 = XOR(NULL, Node_0->xnp) | *Node_2 = XOR(\*Node_0, Node_1->xnp) |
-|---|:-:|:---:|
+|---|:----:|:---:|
 | 010101 | 111001 | 001101 |
-{: .tablelines}
 
 </center>
   
