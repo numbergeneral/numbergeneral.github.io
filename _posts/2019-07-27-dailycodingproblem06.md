@@ -24,8 +24,7 @@ To define this problem well we need to gain insight on the bitwise XOR operation
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
-| 1 | 1 | 0 |  
-{: .align-center}
+| 1 | 1 | 0 |
 
 By looking at the truth table we can observe than XOR returns true only in case if and only if one of the values is true and other is false. Our goal is to use this operation on the pointers to code and decode two addresses within one element. So we just make the XOR operation digit by digit, for example XOR(1100, 0101) = 1001.
 {: .text-justify}
@@ -41,8 +40,7 @@ Let's go through an example first. We have an empty list and will add two nodes.
 
 | NULL | NULL | Node_0->xpn = XOR(NULL, NULL) |
 |---|:---:|:---:|
-| 000000 | 000000 | 000000 |  
-{: .wrapper}
+| 000000 | 000000 | 000000 |
 
 Now let's add a new node. We need to make sure that the old node points to NULL and the new node while the new node points to old node and NULL. So the new node link should look following:
 {: .text-justify}
