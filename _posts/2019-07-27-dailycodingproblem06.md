@@ -38,27 +38,19 @@ From the paragraph above me may already draw some conclusions about pros and con
 Let's go through an example first. We have an empty list and will add two nodes. To make things simpler let's assume that addresses are 6 digit long. We start with an empty list, so the first node will have neither predecessor nor successor and will point to null in both cases.
 {: .text-justify}
 
-<center>
-
 | NULL | NULL | Node_0->xpn = XOR(NULL, NULL) |
 |---|:---:|:---:|
 | 000000 | 000000 | 000000 |  
-
-</center>  
   
 Now let's add a new node. We need to make sure that the old node points to NULL and the new node while the new node points to old node and NULL. So the new node link should look following:
 {: .text-justify}
-<center>
 
 | *Node_0 | NULL | Node_1->xpn = XOR(\*Node_0, NULL) |
 |---|:---:|:---:|
 | 010101 | 000000 | 010101 |
 
-</center>  
-  
 And now we also should update the link for the old node:
 {: .text-justify}
-<center>
 
 | Node_0->xpn | NULL | *next = XOR(Node_0->xpn, NULL) |
 |---|:---:|:---:|
@@ -68,21 +60,15 @@ And now we also should update the link for the old node:
 |---|:----:|:---:|
 | 111001 | 000000 | 111001 |
 
-</center>  
-  
 Now let's add the final node. We will repeat operation from the last step: 
 {: .text-justify}
-<center>
 
 | *Node_1 | NULL | Node_2->xpn = XOR(\*Node_1, NULL) |
 |---|:----:|:---:|
 | 111001 | 000000 | 111001 |
-
-</center>  
-  
+ 
 And now we also should update the link for the old node:
 {: .text-justify}
-<center>
 
 | Node_1->xpn | NULL | *next = XOR(Node_1->xpn, NULL) |
 |---|:----:|:---:|
@@ -91,30 +77,22 @@ And now we also should update the link for the old node:
 | *Node_2 | *next | Node_1->xpn = XOR(\*Node_2, \*next) |
 |---|:----:|:---:|
 | 001101 | 010101 | 011000 |
-
-</center>
-  
+ 
 So finally we have:
 {: .text-justify}
-<center>
 
 || Node_0 | Node_1 | Node_2 |
 |---|---|:----:|:---:|
 |address| 010101 | 111001 | 001101 |
 |xpn| 111001 | 011000 | 111001 |
 
-</center>
-  
 Now let's traverse the list. To do so we need an address of the head node, then we take XOR of the previous node and the xnp value of the current node.
 {: .text-justify}
-<center>
 
 | *Node_0 | *Node_1 = XOR(NULL, Node_0->xnp) | *Node_2 = XOR(\*Node_0, Node_1->xnp) |
 |---|:----:|:---:|
 | 010101 | 111001 | 001101 |
-
-</center>
-  
+ 
 ## The solution
 ### C++
 Since this problem is specific to the programming languages with native pointers I will omit the Python solution and move straight to C++.
