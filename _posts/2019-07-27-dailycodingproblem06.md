@@ -25,6 +25,7 @@ To define this problem well we need to gain insight on the bitwise XOR operation
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
 | 1 | 1 | 0 |  
+{: .text-justify}
 
 By looking at the truth table we can observe than XOR returns true only in case if and only if one of the values is true and other is false. Our goal is to use this operation on the pointers to code and decode two addresses within one element. So we just make the XOR operation digit by digit, for example XOR(1100, 0101) = 1001.
 {: .text-justify}
