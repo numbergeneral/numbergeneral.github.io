@@ -10,8 +10,10 @@ table {
   font-size: $type-size-6;
   border-collapse: collapse;
   overflow-x: auto;
-  align: center;
 
+  margin-left: auto;
+  margin-right: auto;
+   
   & + table {
     margin-top: 1em;
   }
@@ -37,5 +39,4 @@ tr,
 td,
 th {
   vertical-align: middle;
-  align: center;
 }
