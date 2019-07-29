@@ -26,7 +26,7 @@ To define this problem well we need to gain insight on the bitwise XOR operation
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
-| 1 | 1 | 0 |
+| 1 | 1 | 0 |  
 
 </center>  
   
@@ -45,7 +45,7 @@ Let's go through an example first. We have an empty list and will add two nodes.
 
 | NULL | NULL | Node_0->xpn = XOR(NULL, NULL) |
 |---|:-:|:---:|
-| 000000 | 000000 | 000000 |
+| 000000 | 000000 | 000000 |  
 
 </center>  
   
