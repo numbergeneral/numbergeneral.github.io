@@ -19,7 +19,7 @@ The [Daily Coding Problem](https://www.dailycodingproblem.com/) #06 is the follo
 To define this problem well we need to gain insight on the bitwise XOR operation. First of all let's take a look at the XOR operation itself. 
 {: .text-justify}
 
-| A | B | XOR |
+| A | B | XOR(A, B) |
 |---|:---:|:---:|
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
