@@ -19,16 +19,12 @@ The [Daily Coding Problem](https://www.dailycodingproblem.com/) #06 is the follo
 To define this problem well we need to gain insight on the bitwise XOR operation. First of all let's take a look at the XOR operation itself. 
 {: .text-justify}
 
-<center>
-
 | A | B | XOR |
-|---|:-:|:---:|
+|---|:---:|:---:|
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
 | 1 | 1 | 0 |  
-
-</center>
 
 By looking at the truth table we can observe than XOR returns true only in case if and only if one of the values is true and other is false. Our goal is to use this operation on the pointers to code and decode two addresses within one element. So we just make the XOR operation digit by digit, for example XOR(1100, 0101) = 1001.
 {: .text-justify}
