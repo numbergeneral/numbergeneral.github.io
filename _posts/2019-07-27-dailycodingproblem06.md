@@ -30,6 +30,7 @@ To define this problem well we need to gain insight on the bitwise XOR operation
 
 </center>
 
+
 By looking at the truth table we can observe than XOR returns true only in case if and only if one of the values is true and other is false. Our goal is to use this operation on the pointers to code and decode two addresses within one element. So we just make the XOR operation digit by digit, for example XOR(1100, 0101) = 1001.
 {: .text-justify}
 
@@ -49,6 +50,7 @@ Let's go through an example first. We have an empty list and will add two nodes.
 
 </center>
 
+
 Now let's add a new node. We need to make sure that the old node points to NULL and the new node while the new node points to old node and NULL. So the new node link should look following:
 {: .text-justify}
 <center>
@@ -59,6 +61,7 @@ Now let's add a new node. We need to make sure that the old node points to NULL 
 
 </center>
 
+
 And now we also should update the link for the old node:
 {: .text-justify}
 <center>
@@ -67,11 +70,13 @@ And now we also should update the link for the old node:
 |---|:-:|:---:|
 | 000000 | 000000 | 000000 |
 
+
 | *Node_1 | *next | Node_0->xpn = XOR(\*Node_1, \*next) |
 |---|:-:|:---:|
 | 111001 | 000000 | 111001 |
 
 </center>
+
 
 Now let's add the final node. We will repeat operation from the last step: 
 {: .text-justify}
@@ -83,6 +88,7 @@ Now let's add the final node. We will repeat operation from the last step:
 
 </center>
 
+
 And now we also should update the link for the old node:
 {: .text-justify}
 <center>
@@ -91,11 +97,13 @@ And now we also should update the link for the old node:
 |---|:-:|:---:|
 | 010101 | 000000 | 010101 |
 
+
 | *Node_2 | *next | Node_1->xpn = XOR(\*Node_2, \*next) |
 |---|:-:|:---:|
 | 001101 | 010101 | 011000 |
 
 </center>
+
 
 So finally we have:
 {: .text-justify}
@@ -108,6 +116,7 @@ So finally we have:
 
 </center>
 
+
 Now let's traverse the list. To do so we need an address of the head node, then we take XOR of the previous node and the xnp value of the current node.
 {: .text-justify}
 <center>
@@ -117,6 +126,7 @@ Now let's traverse the list. To do so we need an address of the head node, then 
 | 010101 | 111001 | 001101 |
 
 </center>
+
 
 ## The solution
 ### C++
