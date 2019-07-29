@@ -27,6 +27,7 @@ To define this problem well we need to gain insight on the bitwise XOR operation
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
 | 1 | 1 | 0 |
+
 </center>
 
 By looking at the truth table we can observe than XOR returns true only in case if and only if one of the values is true and other is false. Our goal is to use this operation on the pointers to code and decode two addresses within one element. So we just make the XOR operation digit by digit, for example XOR(1100, 0101) = 1001.
@@ -45,6 +46,7 @@ Let's go through an example first. We have an empty list and will add two nodes.
 | NULL | NULL | Node_0->xpn = XOR(NULL, NULL) |
 |---|:-:|:---:|
 | 000000 | 000000 | 000000 |
+
 </center>
 
 Now let's add a new node. We need to make sure that the old node points to NULL and the new node while the new node points to old node and NULL. So the new node link should look following:
@@ -54,6 +56,7 @@ Now let's add a new node. We need to make sure that the old node points to NULL 
 | *Node_0 | NULL | Node_1->xpn = XOR(\*Node_0, NULL) |
 |---|:-:|:---:|
 | 010101 | 000000 | 010101 |
+
 </center>
 
 And now we also should update the link for the old node:
@@ -67,6 +70,7 @@ And now we also should update the link for the old node:
 | *Node_1 | *next | Node_0->xpn = XOR(\*Node_1, \*next) |
 |---|:-:|:---:|
 | 111001 | 000000 | 111001 |
+
 </center>
 
 Now let's add the final node. We will repeat operation from the last step: 
@@ -76,6 +80,7 @@ Now let's add the final node. We will repeat operation from the last step:
 | *Node_1 | NULL | Node_2->xpn = XOR(\*Node_1, NULL) |
 |---|:-:|:---:|
 | 111001 | 000000 | 111001 |
+
 </center>
 
 And now we also should update the link for the old node:
@@ -100,6 +105,7 @@ So finally we have:
 |---|---|:-:|:---:|
 |address| 010101 | 111001 | 001101 |
 |xpn| 111001 | 011000 | 111001 |
+
 </center>
 
 Now let's traverse the list. To do so we need an address of the head node, then we take XOR of the previous node and the xnp value of the current node.
@@ -109,6 +115,7 @@ Now let's traverse the list. To do so we need an address of the head node, then 
 | *Node_0 | *Node_1 = XOR(NULL, Node_0->xnp) | *Node_2 = XOR(\*Node_0, Node_1->xnp) |
 |---|:-:|:---:|
 | 010101 | 111001 | 001101 |
+
 </center>
 
 ## The solution
