@@ -20,7 +20,7 @@ To define this problem well we need to gain insight on the bitwise XOR operation
 {: .text-justify}
 
 | A | B | XOR(A, B) |
-|---|:---:|:---:|
+|:---:|:---:|:---:|
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
@@ -39,50 +39,50 @@ Let's go through an example first. We have an empty list and will add two nodes.
 {: .text-justify}
 
 | NULL | NULL | Node_0->xpn = XOR(NULL, NULL) |
-|---|:---:|:---:|
+|:---:|:---:|:---:|
 | 000000 | 000000 | 000000 |
 
 Now let's add a new node. We need to make sure that the old node points to NULL and the new node while the new node points to old node and NULL. So the new node link should look following:
 {: .text-justify}
 
 | *Node_0 | NULL | Node_1->xpn = XOR(\*Node_0, NULL) |
-|---|:---:|:---:|
+|:---:|:---:|:---:|
 | 010101 | 000000 | 010101 |
 
 And now we also should update the link for the old node:
 {: .text-justify}
 
 | Node_0->xpn | NULL | *next = XOR(Node_0->xpn, NULL) |
-|---|:---:|:---:|
+|:---:|:---:|:---:|
 | 000000 | 000000 | 000000 |
   
 | *Node_1 | *next | Node_0->xpn = XOR(\*Node_1, \*next) |
-|---|:----:|:---:|
+|:---:|:----:|:---:|
 | 111001 | 000000 | 111001 |
 
 Now let's add the final node. We will repeat operation from the last step: 
 {: .text-justify}
 
 | *Node_1 | NULL | Node_2->xpn = XOR(\*Node_1, NULL) |
-|---|:----:|:---:|
+|:---:|:----:|:---:|
 | 111001 | 000000 | 111001 |
  
 And now we also should update the link for the old node:
 {: .text-justify}
 
 | Node_1->xpn | NULL | *next = XOR(Node_1->xpn, NULL) |
-|---|:----:|:---:|
+|:---:|:----:|:---:|
 | 010101 | 000000 | 010101 |
   
 | *Node_2 | *next | Node_1->xpn = XOR(\*Node_2, \*next) |
-|---|:----:|:---:|
+|:---:|:----:|:---:|
 | 001101 | 010101 | 011000 |
  
 So finally we have:
 {: .text-justify}
 
 || Node_0 | Node_1 | Node_2 |
-|---|---|:----:|:---:|
+|:---:|:---:|:----:|:---:|
 |address| 010101 | 111001 | 001101 |
 |xpn| 111001 | 011000 | 111001 |
 
@@ -90,7 +90,7 @@ Now let's traverse the list. To do so we need an address of the head node, then 
 {: .text-justify}
 
 | *Node_0 | *Node_1 = XOR(NULL, Node_0->xnp) | *Node_2 = XOR(\*Node_0, Node_1->xnp) |
-|---|:----:|:---:|
+|:---:|:----:|:---:|
 | 010101 | 111001 | 001101 |
  
 ## The solution
