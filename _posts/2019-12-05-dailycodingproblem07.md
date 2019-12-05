@@ -1,6 +1,6 @@
 ---
 title: "Daily Coding Problem #07"
-date: 2019-09-16
+date: 2019-12-05
 tags: [programming, daily coding problem]
 excerpt: "My solution to the Daily Coding Problem #07"
 mathjax: "true"
