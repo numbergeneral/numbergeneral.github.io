@@ -26,7 +26,7 @@ At the first sight this problem looks like one that can be solved by applying si
 The most recognizable example of the recursive problem would be the Fibonacci sequence. Thus, we shall use it as our example and drive the dynamic programming solution from the recursive definition.
 {: .text-justify}
 
-The Fibonacci sequence is defined as $f(x) = f(x-1) + f(x-2)$ where $f(0)=0$ and $f(1)=1$. If we are to return $n^{th}$ element of the Fibonacci sequence recursively the Python code might look as following.
+The Fibonacci sequence is defined as $$f(x) = f(x-1) + f(x-2)$$ where $$f(0)=0$$ and $$f(1)=1$$. If we are to return $$n^{th}$$ element of the Fibonacci sequence recursively the Python code might look as following.
 {: .text-justify}
 
 ```python
@@ -38,13 +38,13 @@ def recursive_fib(n):
     return recursive_fib(n-1) + recursive_fib(n-2)
 ```
 
-While the solution is extremely simple and elegant it has a drawback of poor performance. The algorithm has a time complexity of $O(n^2)$, but memory complexity of just $O(n)$. Thus, it is not feasible in practical applications as it starts to blow up with $n \approx 40$.  
+While the solution is extremely simple and elegant it has a drawback of poor performance. The algorithm has a time complexity of $$O(n^2)$$, but memory complexity of just $$O(n)$$. Thus, it is not feasible in practical applications as it starts to blow up with $$n \approx 40$$.  
 {: .text-justify}
 
 In order to make the recursive approach more universal we will trade off some memory complexity for reduced time complexity. In order not to recompute the sub-problems each time we will store their results. Then we can reference to them when we need the result again. That would be main theme of the dynamic programming concept.
 {: .text-justify}
 
-Thus, the solution of getting $n^{th}$ element of the Fibonacci sequence using the dynamic programming can look as following.
+Thus, the solution of getting $$n^{th}$$ element of the Fibonacci sequence using the dynamic programming can look as following.
 {: .text-justify}
 
 ```python
@@ -59,7 +59,7 @@ def dp_fibonacci(n):
     return temp[n]
 ```
 
-The idea is to reserve a part of memory to store the solutions of sub-problems and then loop to fill up the list. This algorithm has a time complexity of $O(n)$ and keeps the memory complexity of $O(n)$. Thus, it is linear both in regards to time and space complexity.
+The idea is to reserve a part of memory to store the solutions of sub-problems and then loop to fill up the list. This algorithm has a time complexity of $$O(n)$$ and keeps the memory complexity of $$O(n)$$. Thus, it is linear both in regards to time and space complexity.
 {: .text-justify}
 
 ## The solution
@@ -67,7 +67,7 @@ The idea is to reserve a part of memory to store the solutions of sub-problems a
 The Python solution is presented below. The main idea is to leverage the concept of dynamic programming. The solution starts with declaration of the list that will hold the number of solutions for each of the sub-problems. We assume that for the message with no characters there is one way to decode it (as an empty message) and a message with one character can be decoded in only one way.
 {: .text-justify}
 
-Next, we are looping all of the sub-problems, looking only at the two last characters in the message. If the last digit of the message is different than zero we set the number of ways the message can be decoded the same as the message with one character less. This part of the code leverages the fact that all messages are decodable, i.e. cannot start with 0. Then, if the two last digits are within $(9, 27)$ range, as the max number that can be decoded is 26, we add the number of solutions from the message that had two characters less. Finally the $n^{th}$ int in an array is returned as the result of calculation. 
+Next, we are looping all of the sub-problems, looking only at the two last characters in the message. If the last digit of the message is different than zero we set the number of ways the message can be decoded the same as the message with one character less. This part of the code leverages the fact that all messages are decodable, i.e. cannot start with 0. Then, if the two last digits are within $$(9, 27)$$ range, as the max number that can be decoded is 26, we add the number of solutions from the message that had two characters less. Finally the $$n^{th}$$ int in an array is returned as the result of calculation. 
 {: .text-justify}
 
 ```python
